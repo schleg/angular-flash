@@ -1,4 +1,4 @@
-/*! angular-flash - v0.0.2 - 2014-01-25 */(function (angular) {
+/*! angular-flash - v0.0.3 - 2014-01-25 */(function (angular) {
   'use strict';
   var bind = function (fn, context) {
     return function () {
@@ -25,14 +25,32 @@
       '$timeout',
       function ($rootScope, $timeout) {
         var flash;
+        var findExisting = function (message) {
+          var found;
+          angular.forEach(flash.messages, function (flashMessage) {
+            if (flashMessage.message === message) {
+              found = flashMessage;
+            }
+          });
+          return found;
+        };
         function FlashMessage(message, options) {
           options = options || {};
           this.message = message;
           this.duration = options.duration || defaultDuration;
           this.type = options.type || defaultType;
           this.persist = options.persist;
+          this.unique = true;
         }
         ;
+        FlashMessage.prototype.add = function () {
+          var existing = findExisting(this.message);
+          if (existing) {
+            existing.remove();
+          }
+          flash.messages.push(this.init());
+          return this;
+        };
         FlashMessage.prototype.remove = function () {
           this.cancelTimeout();
           flash.messages.splice(flash.messages.indexOf(this), 1);
@@ -68,9 +86,7 @@
           return this;
         };
         flash = function (message, options) {
-          var flashMessage = new FlashMessage(message, options);
-          flash.messages.push(flashMessage.init());
-          return flashMessage;
+          return new FlashMessage(message, options).add();
         };
         flash.messages = [];
         flash.reset = function () {
