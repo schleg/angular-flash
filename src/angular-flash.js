@@ -1,6 +1,12 @@
 (function(angular) {
   'use strict';
 
+  var bind = function(fn, context) {
+    return function() {
+      return fn.apply(context, arguments);
+    };
+  };
+
   var templateUrl = 'template/flash-messages.html';
 
   var module = angular.module('ngFlash', ['ng']);
@@ -44,6 +50,7 @@
        * Remove this flash message.
        */
       FlashMessage.prototype.remove = function() {
+        this.cancelTimeout();
         flash.messages.splice(flash.messages.indexOf(this), 1);
       };
 
@@ -52,19 +59,26 @@
        * timeout if it's present.
        */
       FlashMessage.prototype.startTimeout = function() {
+        this.cancelTimeout();
+        this.timeout = $timeout(bind(this.remove, this), this.duration);
+        return this.timeout;
+      };
+
+      /**
+       * Cancel a previous timeout.
+       */
+      FlashMessage.prototype.cancelTimeout = function() {
         if (this.timeout) {
           $timeout.cancel(this.timeout);
         }
-
-        this.timeout = $timeout(this.remove, this.duration);
-
-        return this.timeout;
       };
 
       /**
        * Initialize timeouts.
        */
       FlashMessage.prototype.init = function() {
+        var remove = bind(this.remove, this);
+
         this.startTimeout();
 
         // Remove the flash message when the user navigates.
@@ -88,9 +102,9 @@
             };
           };
 
-          $rootScope.$on(routeChangeSuccess, after(this.persist + 1, this.remove));
+          $rootScope.$on(routeChangeSuccess, after(this.persist + 1, remove));
         } else {
-          $rootScope.$on(routeChangeSuccess, this.remove);
+          $rootScope.$on(routeChangeSuccess, remove);
         }
 
         return this;
