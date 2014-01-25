@@ -38,6 +38,13 @@ describe('$flash', function() {
     expect($flash.messages.length).to.eq(1);
   }));
 
+  it('ensures that messages are unique', inject(function($flash) {
+    $flash('Hello World');
+    $flash('Hello World');
+
+    expect($flash.messages.length).to.eq(1);
+  }));
+
   describe('FlashMessage', function() {
     var flashMessage;
 

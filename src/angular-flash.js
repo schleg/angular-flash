@@ -34,6 +34,18 @@
     this.$get = function($rootScope, $timeout) {
       var flash;
 
+      var findExisting = function(message) {
+        var found;
+
+        angular.forEach(flash.messages, function(flashMessage) {
+          if (flashMessage.message === message) {
+            found = flashMessage;
+          }
+        });
+
+        return found;
+      };
+
       /**
        * Flash that represents a flash message.
        */
@@ -44,6 +56,22 @@
         this.duration = options.duration || defaultDuration;
         this.type     = options.type || defaultType;
         this.persist  = options.persist;
+        this.unique   = true;
+      };
+
+      /**
+       * Init and add this flash message.
+       */
+      FlashMessage.prototype.add = function() {
+        var existing = findExisting(this.message);
+
+        if (existing) {
+          existing.remove();
+        }
+
+        flash.messages.push(this.init());
+
+        return this;
       };
 
       /**
@@ -118,9 +146,7 @@
        * @return {Object} The flash message that was added.
        */
       flash = function(message, options) {
-        var flashMessage = new FlashMessage(message, options);
-        flash.messages.push(flashMessage.init());
-        return flashMessage;
+        return new FlashMessage(message, options).add();
       };
 
       // Where we store flash messages.
