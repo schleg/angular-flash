@@ -30,6 +30,41 @@
       var flash;
 
       /**
+       * Flash that represents a flash message.
+       */
+      function FlashMessage(message, options) {
+        options = options || {};
+
+        this.message = message
+        this.timeout = options.timeout || defaultTimeout;
+        this.type    = options.type || defaultType;
+        this.persist = options.persist;
+      };
+
+      /**
+       * Remove this flash message.
+       */
+      FlashMessage.prototype.remove = function() {
+        flash.messages.splice(flash.messages.indexOf(this), 1);
+      };
+
+      /**
+       * Initialize timeouts.
+       */
+      FlashMessage.prototype.init = function() {
+        this.promise = $timeout(this.remove, this.timeout);
+
+        // Remove the flash message when the user navigates.
+        if (this.persist) {
+          $rootScope.$on(routeChangeSuccess, after(this.persist + 1, this.remove));
+        } else {
+          $rootScope.$on(routeChangeSuccess, this.remove);
+        }
+
+        return this;
+      };
+
+      /**
        * Add a flash message.
        *
        * @param {String} message - The flash message to display.
@@ -37,22 +72,8 @@
        * @return {Object} The flash message that was added.
        */
       flash = function(message, options) {
-        var flashMessage = flash.add(message, options);
-
-        var remove = function() {
-          flash.remove(flashMessage);
-        };
-
-        // Remove the flash message after the specified timeout.
-        flashMessage.promise = $timeout(remove, flashMessage.timeout);
-
-        // Remove the flash message when the user navigates.
-        if (flashMessage.persist) {
-          $rootScope.$on(routeChangeSuccess, after(flashMessage.persist + 1, remove));
-        } else {
-          $rootScope.$on(routeChangeSuccess, remove);
-        }
-
+        var flashMessage = new FlashMessage(message, options);
+        flash.messages.push(flashMessage.init());
         return flashMessage;
       };
 
@@ -60,33 +81,12 @@
       flash.messages = []
 
       /**
-       * Add a flash message.
-       *
-       * @param {String} message - The message message.
-       * @param {Object} options - A hash of options.
-       */
-      flash.add = function(message, options) {
-        options = options || {};
-
-        var defaults = {
-          timeout: defaultTimeout,
-          type: defaultType
-        };
-
-        var flashMessage = angular.extend({ message: message }, defaults, options);
-
-        flash.messages.push(flashMessage);
-
-        return flashMessage;
-      };
-
-      /**
        * Remove a message from the collection of flash messages.
        *
        * @param {Object} message - The flash message to remove.
        */
       flash.remove = function(message) {
-        flash.messages.splice(flash.messages.indexOf(message), 1);
+        message.remove();
       };
 
       /**
