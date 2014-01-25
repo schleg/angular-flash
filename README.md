@@ -1,5 +1,7 @@
 ## Angular Flash
 
+Dead simple flash messages for angular.
+
 ### Installation
 
 1. Install with bower.
@@ -55,5 +57,16 @@ the event to `$stateChangeSuccess`:
 ```javascript
 app.config(function(flashProvider) {
   $flashProvider.setRouteChangeSuccess('$stateChangeSuccess');
+});
+```
+
+**Template**
+
+You can change the template for the `flashMessages` directive by inserting a
+custom template into templateCache:
+
+```javascript
+app.run(function($templateCache) {
+  $templateCache.put('template/flash-messages.html', '<your template>');
 });
 ```

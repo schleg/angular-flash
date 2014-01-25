@@ -1,6 +1,8 @@
 (function(angular) {
   'use strict';
 
+  var templateUrl = 'template/flash-messages.html';
+
   /**
    * See
    * https://github.com/jashkenas/underscore/blob/2c709d72c89a1ae9e06c56fc256c14435bfa7893/underscore.js#L770
@@ -127,18 +129,20 @@
       restrict: 'EA',
       replace: true,
       scope: {},
-      templateUrl: 'template/flash-messages.html',
+      templateUrl: templateUrl,
       controller: 'FlashMessagesCtrl'
     };
   });
 
   module.run(function($templateCache) {
-    $templateCache.put('template/flash-messages.html',
-      '<div class="flash-messages">' +
-        '<div class="{{message.type}}" ng-repeat="message in messages" ng-bind="message.message">' +
-          '<a href="" class="close" ng-click="$close(message)"></a>' +
-        '</div>' +
-      '</div>');
+    if (!$templateCache.get(templateUrl)) {
+      $templateCache.put(templateUrl,
+        '<div class="flash-messages">' +
+          '<div class="{{message.type}}" ng-repeat="message in messages" ng-bind="message.message">' +
+            '<a href="" class="close" ng-click="$close(message)"></a>' +
+          '</div>' +
+        '</div>');
+    }
   });
 
 })(angular);
