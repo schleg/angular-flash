@@ -1,0 +1,426 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <title>Index</title>
+
+  <style type="text/css">
+  /* Left will inherit from right (so we don't need to duplicate code) */
+  .github-fork-ribbon {
+    /* The right and left classes determine the side we attach our banner to */
+    position: absolute;
+
+    /* Add a bit of padding to give some substance outside the "stitching" */
+    padding: 2px 0;
+
+    /* Set the base colour */
+    background-color: #a00;
+
+    /* Set a gradient: transparent black at the top to almost-transparent black at the bottom */
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.15)));
+    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+    background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+    background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+    background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+    background-image: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+
+    /* Add a drop shadow */
+    -webkit-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5);
+
+    z-index: 9999;
+    pointer-events: auto;
+  }
+
+  .github-fork-ribbon a,
+  .github-fork-ribbon a:hover {
+    /* Set the font */
+    font: 700 13px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #fff;
+
+    /* Set the text properties */
+    text-decoration: none;
+    text-shadow: 0 -1px rgba(0, 0, 0, 0.5);
+    text-align: center;
+
+    /* Set the geometry. If you fiddle with these you'll also need
+       to tweak the top and right values in .github-fork-ribbon. */
+    width: 200px;
+    line-height: 20px;
+
+    /* Set the layout properties */
+    display: inline-block;
+    padding: 2px 0;
+
+    /* Add "stitching" effect */
+    border-width: 1px 0;
+    border-style: dotted;
+    border-color: #fff;
+    border-color: rgba(255, 255, 255, 0.7);
+  }
+
+  .github-fork-ribbon-wrapper {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    z-index: 9999;
+    pointer-events: none;
+  }
+
+  .github-fork-ribbon-wrapper.fixed {
+    position: fixed;
+  }
+
+  .github-fork-ribbon-wrapper.left {
+    left: 0;
+  }
+
+  .github-fork-ribbon-wrapper.right {
+    right: 0;
+  }
+
+  .github-fork-ribbon-wrapper.left-bottom {
+    position: fixed;
+    top: inherit;
+    bottom: 0;
+    left: 0;
+  }
+
+  .github-fork-ribbon-wrapper.right-bottom {
+    position: fixed;
+    top: inherit;
+    bottom: 0;
+    right: 0;
+  }
+
+  .github-fork-ribbon-wrapper.right .github-fork-ribbon {
+    top: 42px;
+    right: -43px;
+
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+  .github-fork-ribbon-wrapper.left .github-fork-ribbon {
+    top: 42px;
+    left: -43px;
+
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+
+
+  .github-fork-ribbon-wrapper.left-bottom .github-fork-ribbon {
+    top: 80px;
+    left: -43px;
+
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+  .github-fork-ribbon-wrapper.right-bottom .github-fork-ribbon {
+    top: 80px;
+    right: -43px;
+
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+  </style>
+
+  <style type="text/css">
+  @-webkit-keyframes bounceIn {
+    0% {
+      opacity: 0;
+      -webkit-transform: scale(.3);
+    }
+
+    50% {
+      opacity: 1;
+      -webkit-transform: scale(1.05);
+    }
+
+    70% {
+      -webkit-transform: scale(.9);
+    }
+
+    100% {
+      -webkit-transform: scale(1);
+    }
+  }
+
+  @-moz-keyframes bounceIn {
+    0% {
+      opacity: 0;
+      -moz-transform: scale(.3);
+    }
+
+    50% {
+      opacity: 1;
+      -moz-transform: scale(1.05);
+    }
+
+    70% {
+      -moz-transform: scale(.9);
+    }
+
+    100% {
+      -moz-transform: scale(1);
+    }
+  }
+
+  @-o-keyframes bounceIn {
+    0% {
+      opacity: 0;
+      -o-transform: scale(.3);
+    }
+
+    50% {
+      opacity: 1;
+      -o-transform: scale(1.05);
+    }
+
+    70% {
+      -o-transform: scale(.9);
+    }
+
+    100% {
+      -o-transform: scale(1);
+    }
+  }
+
+  @keyframes bounceIn {
+    0% {
+      opacity: 0;
+      transform: scale(.3);
+    }
+
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+
+    70% {
+      transform: scale(.9);
+    }
+
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @-webkit-keyframes fadeOut {
+    0% {opacity: 1;}
+    100% {opacity: 0;}
+  }
+
+  @-moz-keyframes fadeOut {
+    0% {opacity: 1;}
+    100% {opacity: 0;}
+  }
+
+  @-o-keyframes fadeOut {
+    0% {opacity: 1;}
+    100% {opacity: 0;}
+  }
+
+  @keyframes fadeOut {
+    0% {opacity: 1;}
+    100% {opacity: 0;}
+  }
+  
+  body {
+    font-family: 'Helvetica';
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1 {
+    font-family: 'proxima-nova';
+    font-size: 60px;
+    font-weight: normal;
+    margin: 20px 0;
+  }
+
+  header {
+    padding: 80px 0 0 0;
+    text-align: center;
+  }
+
+  footer {
+    font-family: 'proxima-nova';
+    clear: both;
+    padding: 40px;
+    text-align: center;
+  }
+
+  footer > a {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  header > p {
+    font-family: 'proxima-nova';
+    color: #999;
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  .container {
+    margin: 0 auto;
+    width: 700px;
+  }
+
+  .flash-messages {
+    margin: 40px 0;
+  }
+
+  .flash-message {
+    position: relative;
+    font-size: 16px;
+    padding: 15px 20px;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+
+  .flash-message.alert {
+    background: #ff4136;
+  }
+
+  .flash-message.info {
+    background: #39cccc;
+  }
+
+  .flash-message .close {
+    text-decoration: none;
+    color: rgba(0,0,0,0.5);
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    margin-top: -8px;
+  }
+
+  .flash-message .close:hover {
+    color: rgba(0,0,0,0.9);
+  }
+
+  .flash-message .close:after {
+    display: block;
+    content: '✖';
+  }
+
+  .flash-message.ng-enter {
+    -webkit-animation-name: bounceIn;
+    -moz-animation-name: bounceIn;
+    -o-animation-name: bounceIn;
+    animation-name: bounceIn;
+    -webkit-animation-duration: 0.5s;
+    -moz-animation-duration: 0.5s;
+    -o-animation-duration: 0.5s;
+    animation-duration: 0.5s;
+  }
+
+  .flash-message.ng-leave {
+    -webkit-animation-name: fadeOut;
+    -moz-animation-name: fadeOut;
+    -o-animation-name: fadeOut;
+    animation-name: fadeOut;
+    -webkit-animation-duration: 0.5s;
+    -moz-animation-duration: 0.5s;
+    -o-animation-duration: 0.5s;
+    animation-duration: 0.5s;
+  }
+
+  input {
+    float: left;
+    box-sizing: border-box;
+    font-family: 'Helvetica';
+    display: block;
+    width: 550px;
+    border: 2px solid #999;
+    border-right: none;
+    font-size: 20px;
+    padding: 10px 20px;
+    margin: 0;
+    line-height: 40px;
+    outline: none;
+  }
+
+  .button {
+    float: left;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    font-size: 20px;
+    line-height: 40px;
+    background: rgba(0,116,217,0.7);
+    border: 2px solid rgba(0, 116, 217, 0.5);
+    color: #fff;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    width: 150px;
+    text-shadow: 0 1px rgba(0,0,0,0.3);
+    transition: all 0.5s;
+  }
+
+  .button:hover {
+    background: rgba(0,116,217, 0.8);
+  }
+  </style>
+
+  <script type="text/javascript" src="//use.typekit.net/mjt2mjt.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-animate.min.js"></script>
+  <script src="js/angular-flash.js"></script>
+  <script>
+    var app = angular.module('app', ['ng', 'ngAnimate', 'ngFlash']);
+
+    app.controller('AppCtrl', function($scope, $flash, $timeout) {
+      $scope.$flash = $flash;
+
+      $scope.message = "Hello World";
+
+      $timeout(function() {
+        $flash('Welcome!', { type: 'info' });
+      }, 1000);
+    });
+  </script>
+</head>
+<body ng-app="app" ng-controller="AppCtrl">
+  <div class="github-fork-ribbon-wrapper left">
+    <div class="github-fork-ribbon">
+      <a href="https://github.com/remind101/angular-flash">Fork me on GitHub</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <header>
+      <h1>Angular Flash</h1>
+      <p>Dead simple flash messages for Angular</p>
+      <flash-messages></flash-messages>
+    </header>
+    <div class="main">
+      <input type="text" ng-model="message">
+      <a class="button" href="" ng-click="$flash(message)">Show</a>
+    </div>
+    <footer>
+      <a href="https://github.com/remind101/angular-flash">Download</a>
+    </footer>
+  </div>
+</body>
+</html>
