@@ -18,13 +18,22 @@
   module.provider('$flash', function() {
     // How long to wait before removing the flash message.
     var defaultDuration = 5000;
+    this.setDefaultDuration = function(duration) {
+      defaultDuration = duration;
+    };
 
     // The type of message.
     var defaultType = 'alert';
+    this.setDefaultType = function(type) {
+      defaultType = type;
+    };
 
     // Flash messages will not persist across route change events unless
     // explicitly specified.
     var routeChangeSuccess = '$routeChangeSuccess';
+    this.setRouteChangeSuccess = function(event) {
+      routeChangeSuccess = event;
+    };
 
     this.$get = function($rootScope, $timeout) {
       var flash;

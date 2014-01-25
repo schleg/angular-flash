@@ -43,3 +43,17 @@ $flash('Hello World', { persist: 1 });
 ```javascript
 $flash('Hello World', { duration: 10000 });
 ```
+
+### Configuration
+
+**routeChangeSuccess**
+
+Flash messages will, by default, disappear after the user navigates
+(`$routeChangeSuccess`). If you're using angular-ui-router, then you should set
+the event to `$stateChangeSuccess`:
+
+```javascript
+app.config(function(flashProvider) {
+  $flashProvider.setRouteChangeSuccess('$stateChangeSuccess');
+});
+```
