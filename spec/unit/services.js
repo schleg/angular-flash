@@ -38,6 +38,22 @@ describe('$flash', function() {
     expect($flash.messages.length).to.eq(1);
   }));
 
+  describe('FlashMessage', function() {
+    var flashMessage;
+
+    beforeEach(inject(function($flash) {
+      flashMessage = $flash('Hello World');
+    }));
+
+    describe('#remove', function() {
+      it('removes the message', inject(function($flash) {
+        flashMessage.remove();
+
+        expect($flash.messages).to.be.empty;
+      }));
+    });
+  });
+
   describe('.reset', function() {
     it('resets the messages', inject(function($flash) {
       $flash('Hello World');

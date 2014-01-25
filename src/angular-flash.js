@@ -113,15 +113,6 @@
       flash.messages = []
 
       /**
-       * Remove a message from the collection of flash messages.
-       *
-       * @param {Object} message - The flash message to remove.
-       */
-      flash.remove = function(message) {
-        message.remove();
-      };
-
-      /**
        * Reset the flash messages
        */
       flash.reset = function() {
@@ -132,26 +123,15 @@
     };
   });
 
-  module.controller('FlashMessagesCtrl', function($scope, $flash) {
-    $scope.messages = $flash.messages;
-
-    /**
-     * Remove a message.
-     *
-     * @param {Object} message - The message to remove.
-     */
-    $scope.$close = function(message) {
-      $flash.remove(message);
-    };
-  });
-
   module.directive('flashMessages', function() {
     return {
       restrict: 'EA',
       replace: true,
       scope: {},
       templateUrl: templateUrl,
-      controller: 'FlashMessagesCtrl'
+      controller: function($scope, $flash) {
+        $scope.messages = $flash.messages;
+      }
     };
   });
 
@@ -160,7 +140,7 @@
       $templateCache.put(templateUrl,
         '<div class="flash-messages">' +
           '<div class="flash-message {{message.type}}" ng-repeat="message in messages" ng-bind="message.message">' +
-            '<a href="" class="close" ng-click="$close(message)"></a>' +
+            '<a href="" class="close" ng-click="message.remove()"></a>' +
           '</div>' +
         '</div>');
     }
