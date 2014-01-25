@@ -138,7 +138,7 @@
     if (!$templateCache.get(templateUrl)) {
       $templateCache.put(templateUrl,
         '<div class="flash-messages">' +
-          '<div class="{{message.type}}" ng-repeat="message in messages" ng-bind="message.message">' +
+          '<div class="flash-message {{message.type}}" ng-repeat="message in messages" ng-bind="message.message">' +
             '<a href="" class="close" ng-click="$close(message)"></a>' +
           '</div>' +
         '</div>');

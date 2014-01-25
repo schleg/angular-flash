@@ -1,5 +1,7 @@
 ## Angular Flash
 
+[![Build Status](https://travis-ci.org/remind101/angular-flash.png?branch=master)](https://travis-ci.org/remind101/angular-flash)
+
 Dead simple flash messages for angular.
 
 ### Installation
@@ -69,4 +71,23 @@ custom template into templateCache:
 app.run(function($templateCache) {
   $templateCache.put('template/flash-messages.html', '<your template>');
 });
+```
+
+### Animations
+
+ngFlash is fully compatible with ngAnimate, all you need to do is use the
+`.ng-enter` and `.ng-leave` classes.
+
+**Example**
+
+```css
+.flash-message.ng-enter {
+  animation-name: fadeIn;
+  animation-duration: 1s;
+}
+
+.flash-message.ng-leave {
+  animation-name: fadeOut;
+  animation-duration: 1s;
+}
 ```
