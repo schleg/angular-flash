@@ -4,6 +4,8 @@
 
 Dead simple flash messages for angular.
 
+**[Demo](http://remind101.github.com/angular-flash)**
+
 ### Installation
 
 1. Install with bower.
