@@ -17,7 +17,7 @@
 
   module.provider('$flash', function() {
     // How long to wait before removing the flash message.
-    var defaultTimeout = 5000;
+    var defaultDuration = 5000;
 
     // The type of message.
     var defaultType = 'alert';
@@ -35,10 +35,10 @@
       function FlashMessage(message, options) {
         options = options || {};
 
-        this.message = message
-        this.timeout = options.timeout || defaultTimeout;
-        this.type    = options.type || defaultType;
-        this.persist = options.persist;
+        this.message  = message
+        this.duration = options.duration || defaultDuration;
+        this.type     = options.type || defaultType;
+        this.persist  = options.persist;
       };
 
       /**
@@ -52,7 +52,7 @@
        * Initialize timeouts.
        */
       FlashMessage.prototype.init = function() {
-        this.promise = $timeout(this.remove, this.timeout);
+        this.timeout = $timeout(this.remove, this.duration);
 
         // Remove the flash message when the user navigates.
         if (this.persist) {
