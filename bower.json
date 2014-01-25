@@ -9,11 +9,15 @@
   "devDependencies": {
     "jquery": "*",
     "angular": "*",
+    "angular-animate": "*",
     "angular-mocks": "*"
   },
   "ignore": [
     "node_modules",
     "bower_components",
     "lib"
-  ]
+  ],
+  "resolutions": {
+    "angular": "1.2.10"
+  }
 }
