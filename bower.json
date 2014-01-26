@@ -16,8 +16,5 @@
     "node_modules",
     "bower_components",
     "lib"
-  ],
-  "resolutions": {
-    "angular": "1.2.10"
-  }
+  ]
 }

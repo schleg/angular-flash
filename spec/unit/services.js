@@ -12,7 +12,17 @@ describe('$flash', function() {
   it('removes messages after the timeout', inject(function($flash, $timeout) {
     $flash('Hello World');
 
-    $timeout.flush();
+    $timeout.flush(5001);
+    expect($flash.messages).to.be.empty;
+  }));
+
+  it('allows a custom duration to be specified', inject(function($flash, $timeout) {
+    $flash('Hello World', { duration: 1000 });
+
+    $timeout.flush(999);
+    expect($flash.messages.length).to.eq(1);
+
+    $timeout.flush(1);
     expect($flash.messages).to.be.empty;
   }));
 
@@ -20,7 +30,17 @@ describe('$flash', function() {
     var message = 'Hello World';
 
     $flash(message);
+    $timeout.flush(2500);
+    expect($flash.messages.length).to.eq(1);
+
     $flash(message);
+    $timeout.flush(2501);
+    expect($flash.messages.length).to.eq(1);
+
+    expect($flash.messages).to.not.be.empty;
+
+    $timeout.flush(2500);
+    expect($flash.messages).to.be.empty;
   }));
 
   it('removes the flash message on route change events', inject(function($rootScope, $flash) {
@@ -36,13 +56,9 @@ describe('$flash', function() {
 
     $rootScope.$emit('$routeChangeSuccess');
     expect($flash.messages.length).to.eq(1);
-  }));
 
-  it('ensures that messages are unique', inject(function($flash) {
-    $flash('Hello World');
-    $flash('Hello World');
-
-    expect($flash.messages.length).to.eq(1);
+    $rootScope.$emit('$routeChangeSuccess');
+    expect($flash.messages).to.be.empty;
   }));
 
   describe('FlashMessage', function() {

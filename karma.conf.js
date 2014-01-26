@@ -19,8 +19,6 @@ module.exports = function(config) {
     files: [
       'bower_components/jquery/jquery.js',
       'bower_components/angular/angular.js',
-      'bower_components/lodash/dist/lodash.js',
-      'bower_components/restangular/dist/restangular.js',
 
       // Source files
       'src/**/*.js',
@@ -29,8 +27,6 @@ module.exports = function(config) {
       'bower_components/angular-mocks/angular-mocks.js',
       'node_modules/chai/chai.js',
       'node_modules/chai-jquery/chai-jquery.js',
-      'node_modules/chai-as-promised/lib/chai-as-promised.js',
-      'node_modules/mocha-as-promised/mocha-as-promised.js',
       'node_modules/sinon/lib/sinon.js',
       'node_modules/sinon/lib/sinon/spy.js',
       'node_modules/sinon/lib/sinon/stub.js',
@@ -38,7 +34,6 @@ module.exports = function(config) {
       'node_modules/sinon/lib/sinon/match.js',
       'node_modules/sinon/lib/sinon/util/fake_timers.js',
       'spec/lib/*.js',
-      'spec/helper.js',
 
       // Spec files
       'spec/unit/**/*.js'
