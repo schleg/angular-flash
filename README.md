@@ -23,28 +23,28 @@ Dead simple flash messages for angular.
 
 ### Usage
 
-The `ngFlash` module exposes a `$flash` to display flash messages. Here's some
+The `ngFlash` module exposes a `$flash` service to display flash messages. Here's some
 examples:
 
-**Simple flash message**
+Simple flash message
 
 ```javascript
 $flash('Hello World');
 ```
 
-**Flash message with a custom type**
+Flash message with a custom type
 
 ```javascript
 $flash('Hello World', { type: 'info' });
 ```
 
-**Flash message that persists across a route change**
+Flash message that persists across a route change
 
 ```javascript
 $flash('Hello World', { persist: 1 });
 ```
 
-**Flash message with a custom duration**
+Flash message with a custom duration
 
 ```javascript
 $flash('Hello World', { duration: 10000 });
