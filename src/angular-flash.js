@@ -181,7 +181,7 @@
         '<div class="flash-messages">' +
           '<div class="flash-message {{message.type}}" ng-repeat="message in messages">' +
             '<a href="" class="close" ng-click="message.remove()"></a>' +
-            '<span class="flash-content" ng-bind="message.message"></div>' +
+            '<span class="flash-content" ng-bind="message.message"></span>' +
           '</div>' +
         '</div>');
     }
