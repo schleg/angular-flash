@@ -59,7 +59,7 @@ Flash messages will, by default, disappear after the user navigates
 the event to `$stateChangeSuccess`:
 
 ```javascript
-app.config(function(flashProvider) {
+app.config(function($flashProvider) {
   $flashProvider.setRouteChangeSuccess('$stateChangeSuccess');
 });
 ```
