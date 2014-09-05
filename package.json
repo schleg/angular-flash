@@ -5,7 +5,7 @@
     "grunt-contrib-copy": "~0.4.1",
     "grunt-contrib-concat": "~0.3.0",
     "grunt-ngmin": "~0.0.3",
-    "grunt-karma": "~0.6.2",
+    "grunt-karma": "latest",
     "load-grunt-tasks": "~0.2.0",
     "karma": "latest",
     "karma-mocha": "latest",
