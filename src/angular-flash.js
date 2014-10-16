@@ -180,8 +180,8 @@
       $templateCache.put(templateUrl,
         '<div class="flash-messages">' +
           '<div class="flash-message {{message.type}}" ng-repeat="message in messages">' +
-            '<a href="" class="close" ng-click="message.remove()"></a>' +
             '<span class="flash-content" ng-bind-html="message.message"></span>' +
+            '<a href="" class="close" ng-click="message.remove()"></a>' +
           '</div>' +
         '</div>');
     }

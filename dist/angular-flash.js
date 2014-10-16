@@ -1,4 +1,4 @@
-/*! angular-flash - v0.0.6 - 2014-09-05 */(function (angular) {
+/*! angular-flash - v0.0.6 - 2014-10-16 */(function (angular) {
   'use strict';
   var bind = function (fn, context) {
     return function () {
@@ -157,7 +157,7 @@
     '$templateCache',
     function ($templateCache) {
       if (!$templateCache.get(templateUrl)) {
-        $templateCache.put(templateUrl, '<div class="flash-messages">' + '<div class="flash-message {{message.type}}" ng-repeat="message in messages">' + '<a href="" class="close" ng-click="message.remove()"></a>' + '<span class="flash-content" ng-bind-html="message.message"></span>' + '</div>' + '</div>');
+        $templateCache.put(templateUrl, '<div class="flash-messages">' + '<div class="flash-message {{message.type}}" ng-repeat="message in messages">' + '<span class="flash-content" ng-bind-html="message.message"></span>' + '<a href="" class="close" ng-click="message.remove()"></a>' + '</div>' + '</div>');
       }
     }
   ]);
